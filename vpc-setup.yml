@@ -96,6 +96,8 @@
           Name: vprofile-prisub3
       register: prisub3_out
 
+      ## Route igw cho subnet
+
     - name: Internet Gateway Setup
       ec2_vpc_igw:
         vpc_id: "{{ vpcout.vpc.id }}"
@@ -104,3 +106,18 @@
         resource_tags:
           Name: vprofile_IGW
       register: igw_out
+
+    - name: Set up public subnet route table
+      ec2_vpc_route_table:
+        vpc_id: "{{ vpcout.vpc.id}}"
+        region: "{{ region }}"
+        tags:
+          Name: Vprofile-PubRT
+        subnets:
+          - "{{ pubsub1_out.subnet.id }}"
+          - "{{ pubsub2_out.subnet.id }}"
+          - "{{ pubsub3_out.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{igw_out.gateway_id}}"
+      register: pubRT_out
