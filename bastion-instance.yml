@@ -16,7 +16,7 @@
       register: key_out
 
     - debug:
-             var: keyout
+        var: key_out
 
     - name: Save private key into file bastion-key.pem
       copy:
