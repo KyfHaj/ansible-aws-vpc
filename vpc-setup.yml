@@ -13,7 +13,7 @@
         dns_support: yes
         dns_hostnames: yes
         tenancy: default
-        state: "{{ state }}"
+        state: "{{ state }}"  ## ????
       register: vpcout
 
 #    - debug:
@@ -165,7 +165,7 @@
         - pubRT_out.route_table.id
         - privRT_out.route_table.id
 
-    - set_fact:
+    - set_fact:           ## ????
         vpcid: "{{ vpcout.vpc.id }}"
 
         pubsub1id: "{{ pubsub1_out.subnet.id }}"
@@ -181,7 +181,7 @@
         pubRTid: "{{ pubRT_out.route_table.id }}"
         priRTid: "{{ privRT_out.route_table.id }}"
 
-        cacheable: yes
+        cacheable: yes      ## ???
 
     - name: Create variables file for vpc
       copy:
