@@ -36,11 +36,10 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{ MYIP }}"
-
-          - proto: tcp
-            from_port: 22
-            to_port: 22
-            cidr_ip: "{{ ansible-admin-IP }}"
+          - proto: all
+            from_port: 10050
+            to_port: 10050
+            cidr_ip: "{{ ansible_admin_IP }}"
 
       register: BastionSG_out
 
