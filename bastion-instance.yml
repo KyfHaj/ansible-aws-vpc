@@ -15,6 +15,9 @@
         region: "{{ region }}"
       register: key_out
 
+    - debug:
+             var: keyout
+
     - name: Save private key into file bastion-key.pem
       copy:
         content: "{{ key_out.key.private_key }}"
@@ -38,6 +41,7 @@
             from_port: 10050
             to_port: 10050
             cidr_ip: "{{ ansible-admin-IP }}"
+
       register: BastionSG_out
 
     - name: Creating Bastion Host
