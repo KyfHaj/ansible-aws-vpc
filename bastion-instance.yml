@@ -33,6 +33,11 @@
             from_port: 22
             to_port: 22
             cidr_ip: "{{ MYIP }}"
+
+          - proto: all
+            from_port: 10050
+            to_port: 10050
+            cidr_ip: "{{ ansible-admin-IP }}"
       register: BastionSG_out
 
     - name: Creating Bastion Host
@@ -58,3 +63,11 @@
         group_id: "{{ BastionSG_out.group_id }}"
         vpc_subnet_id: "{{ pubsub1id }}"
       register: bastionHost_out
+
+
+      ## Nếu ra lỗi:
+      ## fatal: [localhost]: FAILED! => {"changed": false, "msg": "boto required for this module"}
+      ## thi`:
+      ## sudo apt install python3-pip -y
+      ## pip install -U boto
+      ## Comment 95.
