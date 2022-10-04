@@ -1,4 +1,3 @@
----
 - name: Setup Vprofile Bastion Host
   hosts: localhost
   connection: local
@@ -36,7 +35,7 @@
             cidr_ip: "{{ MYIP }}"
       register: BastionSG_out
 
-    - Creating Bastion Host
+    - name: Creating Bastion Host
       ec2:
         key_name: vprofile-key
         region: "{{ region }}"
