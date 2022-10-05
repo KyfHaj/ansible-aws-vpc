@@ -48,7 +48,6 @@
         description: Allow port 22 (http) from bastion host and all port 80 from ELB
         region: "{{ region }}"
         vpc_id: "{{ vpcid }}"
-        purge_rules: no
         rules:
           - proto: tcp
             from_port: 80
@@ -58,7 +57,7 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            group_id: "{{ BastionSG_out }}"
+            group_id: "{{ BastionSG_out.group_id }}"
       register: vproStackSG_out
 
     - name: Update Security Group with its own sg id
