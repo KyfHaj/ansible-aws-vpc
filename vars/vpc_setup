@@ -12,13 +12,13 @@ PriSub2Cidr: 172.20.5.0/24
 PriSub3Cidr: 172.20.6.0/24
 
 # Region Name
-region: "ap-northeast-2"
+region: "ap-southeast-2"
 # sysney
 
 # Zone Name
-zone1: ap-northeast-2a
-zone2: ap-northeast-2b
-zone3: ap-northeast-2c
+zone1: ap-southeast-2a
+zone2: ap-southeast-2b
+zone3: ap-southeast-2c
 
 state: present
 
