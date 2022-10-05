@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Import VPC setup Variable
-      include_vars: vars/output_vars
+      include_vars: vars/output_vars    #Nhớ kiểm tra file vars/output_vars
 
     - name: Import vprofile setup Variable
       include_vars: vars/vprofilestacksetup
@@ -57,7 +57,7 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            group_id: "{{ BastionSGid }}"
+            group_id: "{{ BastionSGid }}" ## Nhớ kiểm tra file vars/output_vars. format cho đúng
       register: vproStackSG_out
 
     - name: Update Security Group with its own sg id
