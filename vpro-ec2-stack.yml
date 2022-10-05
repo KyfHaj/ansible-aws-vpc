@@ -13,7 +13,7 @@
     - name: Create vprofile ec2 keypair
       ec2_key:
         name: vprokey
-        region: {{ region }}
+        region: "{{ region }}"
       register: vprokey_out
 
     - debug:
