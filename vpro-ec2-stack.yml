@@ -71,3 +71,28 @@
           - proto: all
             group_id: "{{ vproStackSG_out.group_id }}"
 
+        ## Tạo 5 instace: web01, app01, db01, rmq01, mem01
+
+    - name: Create Nginx web01
+      ec2:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image: "{{ nginx_ami }}"
+        wait: yes
+        wait_timeout: 300
+
+        instance_tags:
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+
+        count_tag:
+          Name: "web01"
+          Project: Vprofile
+          Owner: DevOps Team
+
+        group_id: "{{ vproStackSG_out.group_id }}"
+        vpc_subnet_id: "{{ prisub1id }}"
+      register: web01_out
