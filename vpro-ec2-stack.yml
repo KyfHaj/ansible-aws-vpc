@@ -193,5 +193,5 @@
         vpc_subnet_id: "{{ prisub1id }}"
       register: db01_out
 
-    debug:
-      var: db01_out.tagged_instance[0]
+    - debug:
+        var: db01_out.tagged_instance[0]
