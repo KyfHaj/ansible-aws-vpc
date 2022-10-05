@@ -1,4 +1,4 @@
-bastion_ami: ami-055166f8a8041fbf1
+bastion_ami: ami-00c5eee15c96a7182
 region: ap-northeast-2
 MYIP: 27.64.50.118/32
-ansible_admin_IP: 54.252.64.253/32
+ansible_admin_IP: 13.236.90.250/32
