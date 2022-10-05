@@ -96,3 +96,99 @@
         group_id: "{{ vproStackSG_out.group_id }}"
         vpc_subnet_id: "{{ prisub1id }}"
       register: web01_out
+
+    - name: Create tomcat app01
+      ec2:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image: "{{ tomcat_ami }}"
+        wait: yes
+        wait_timeout: 300
+
+        instance_tags:
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+
+        count_tag:
+          Name: "app01"
+          Project: Vprofile
+          Owner: DevOps Team
+
+        group_id: "{{ vproStackSG_out.group_id }}"
+        vpc_subnet_id: "{{ prisub1id }}"
+      register: app01_out
+
+    - name: Create RabbitMQ rmq01
+      ec2:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image: "{{ rmq_ami }}"
+        wait: yes
+        wait_timeout: 300
+
+        instance_tags:
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+
+        count_tag:
+          Name: "rmq01"
+          Project: Vprofile
+          Owner: DevOps Team
+
+        group_id: "{{ vproStackSG_out.group_id }}"
+        vpc_subnet_id: "{{ prisub1id }}"
+      register: rmq01_out
+
+    - name: Create memcache mc01
+      ec2:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image: "{{ memcache_ami }}"
+        wait: yes
+        wait_timeout: 300
+
+        instance_tags:
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+
+        count_tag:
+          Name: "mc01"
+          Project: Vprofile
+          Owner: DevOps Team
+
+        group_id: "{{ vproStackSG_out.group_id }}"
+        vpc_subnet_id: "{{ prisub1id }}"
+      register: mc01_out
+
+    - name: Create Mysql db01
+      ec2:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image: "{{ mysql_ami }}"
+        wait: yes
+        wait_timeout: 300
+
+        instance_tags:
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+
+        count_tag:
+          Name: "db01"
+          Project: Vprofile
+          Owner: DevOps Team
+
+        group_id: "{{ vproStackSG_out.group_id }}"
+        vpc_subnet_id: "{{ prisub1id }}"
+      register: db01_out

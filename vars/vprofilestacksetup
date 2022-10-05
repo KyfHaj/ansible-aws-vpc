@@ -2,7 +2,7 @@ nginx_ami: ami-055166f8a8041fbf1
 tomcat_ami: ami-055166f8a8041fbf1
 memcache_ami: ami-055166f8a8041fbf1
 rmq_ami: ami-055166f8a8041fbf1
-mysql: ami-055166f8a8041fbf1
+mysql_ami: ami-055166f8a8041fbf1
 
 # Region Name
 region: ap-southeast-2
