@@ -5,4 +5,4 @@ rmq_ami: ami-055166f8a8041fbf1
 mysql: ami-055166f8a8041fbf1
 
 # Region Name
-region: "ap-northeast-2"
+region: "ap-southeast-2"
