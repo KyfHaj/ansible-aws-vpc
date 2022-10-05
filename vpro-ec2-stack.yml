@@ -7,7 +7,7 @@
       include_vars: vars/output_vars
 
     - name: Import vprofile setup Variable
-      include_vars: vars/vprofilestacketup
+      include_vars: vars/vprofilestacksetup
 
             ##  Tạo keypair
     - name: Create vprofile ec2 keypair
