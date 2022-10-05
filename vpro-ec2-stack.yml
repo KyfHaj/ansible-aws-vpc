@@ -11,20 +11,20 @@
 
             ##  Tạo keypair
     - name: Create vprofile ec2 keypair
-     ec2_key:
-       name: vprokey
-       region: {{ region }}
-     register: vprokey_out
+      ec2_key:
+        name: vprokey
+        region: {{ region }}
+      register: vprokey_out
 
     - debug:
        var: vprokey_out
 
     - name: store login key
-     copy:
-       content: "{{vprokey_out.key.private_key}}"
-       dest: ./vprokey.pem
-       mode: 0600
-     when: vprokey_out.changed
+      copy:
+        content: "{{vprokey_out.key.private_key}}"
+        dest: ./vprokey.pem
+        mode: 0600
+      when: vprokey_out.changed
 
             ## Tạo SG cho ELB (port 80 cho anywhere)
     - name: Create Security Group for Load Balancer
@@ -67,7 +67,7 @@
         description: Allow all port within sg
         region: "{{ region }}"
         vpc_id: "{{ vpcid }}"
-        purge_rules: no
+        purge_rules: no             # Là để ko xóa rules trước đó
         rules:
           - proto: all
             group_id: "{{ vproStackSG_out.group_id }}"
