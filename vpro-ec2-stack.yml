@@ -198,7 +198,7 @@
 
       ### Tạo ELB, add web01 vào
 
-    - local action:
+    - local_action:
         module: ec2_elb_lb
         name: "vprofile-elb"
         region: "{{ region }}"
