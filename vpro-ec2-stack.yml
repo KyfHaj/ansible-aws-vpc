@@ -57,7 +57,7 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            group_id: "{{ BastionSG_out.group_id }}"
+            group_id: "{{ BastionSGid }}"
       register: vproStackSG_out
 
     - name: Update Security Group with its own sg id
