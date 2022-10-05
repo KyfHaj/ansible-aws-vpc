@@ -9,7 +9,8 @@
     - name: Import vprofile setup Variable
       include_vars: vars/vprofilestacketup
 
-    - name: Create vprofile ec2 key
+            ##  Tạo keypair
+    - name: Create vprofile ec2 keypair
      ec2_key:
        name: vprokey
        region: {{ region }}
@@ -22,4 +23,52 @@
      copy:
        content: "{{vprokey_out.key.private_key}}"
        dest: ./vprokey.pem
+       mode: 0600
      when: vprokey_out.changed
+
+            ## Tạo SG cho ELB (port 80 cho anywhere)
+    - name: Create Security Group for Load Balancer
+      ec2_group:
+        name: vproELB-sg
+        description: Allow port 80 (http) from anywhere
+        region: "{{ region }}"
+        vpc_id: "{{ vpcid }}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELBSG_out
+
+           ## Tạo SG cho ELB (port 80 chỉ cho ELB, 22 chỉ cho Bastion-host và all port cho chính nó)
+
+    - name: Create Security Group for vprofile Stack
+      ec2_group:
+        name: vproStack-sg
+        description: Allow port 22 (http) from bastion host and all port 80 from ELB
+        region: "{{ region }}"
+        vpc_id: "{{ vpcid }}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{ vproELBSG_out.group_id }}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{ BastionSG_out }}"
+      register: vproStackSG_out
+
+    - name: Update Security Group with its own sg id
+      ec2_group:
+        name: vproStack-sg
+        description: Allow all port within sg
+        region: "{{ region }}"
+        vpc_id: "{{ vpcid }}"
+        purge_rules: no
+        rules:
+          - proto: all
+            group_id: "{{ vproStackSG_out.group_id }}"
+
