@@ -192,3 +192,6 @@
         group_id: "{{ vproStackSG_out.group_id }}"
         vpc_subnet_id: "{{ prisub1id }}"
       register: db01_out
+
+      debug:
+        var: db01_out
