@@ -34,5 +34,6 @@
       with_filelob: Vprofile-repo/target/*.war
 
     - name: Copy SQL file to file directory
-      copy: Vprofile-repo/src/main/resources/db_backup.sql
-      dest: files/db_backup.sql
+      copy:
+        src: Vprofile-repo/src/main/resources/db_backup.sql
+        dest: files/db_backup.sql
