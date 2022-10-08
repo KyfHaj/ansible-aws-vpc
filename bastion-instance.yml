@@ -1,3 +1,6 @@
+# Tạo key,SG, ec2 làm bastion host
+# Lưu thông tin vào output_vars
+
 - name: Setup Vprofile Bastion Host
   hosts: localhost
   connection: local

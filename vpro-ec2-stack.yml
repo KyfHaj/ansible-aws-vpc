@@ -1,3 +1,9 @@
+# Tạo VPC + pub, priv subnet
+# Tạo ELB, 5 EC2, key-pair cho EC2 và SG cho nó thông nhau
+# Lưu thông tin vào provision-stack/inventory-vpro
+#                   provision-stack/group_vars/hostip
+
+
 - name: Setup Vprofile Stack
   hosts: localhost
   connection: local
@@ -204,7 +210,7 @@
         region: "{{ region }}"
         state: present
         instance_ids:
-          - "{{ web01_out.tagged_instances[0].id }}"
+          - "{{ web01_out.tagged_instances[0].id }}"  # Đẩy instance vào ELB
         purge_instance_ids: true      # Xóa tất cả instance nếu ko có trong instance_ids
         security_group_ids: "{{ vproELBSG_out.group_id }}"
         subnets:
@@ -218,6 +224,16 @@
 
         ## Lưu Private IP 5 cái vào hostsip
         ## Lưu IP
+
+#    - name: Insert/update Host IP & name in file provision-stack/group_vars/hostsip
+#      blockinfile:
+#        path: provision-stack/group_vars/hostsip
+#        block:
+#          web01_ip: "{{ web01_out.tagged_instances[0].private_ip }}"
+#          app01_ip: "{{ app01_out.tagged_instances[0].private_ip }}"
+#          mc01_ip: "{{ mc01_out.tagged_instances[0].private_ip }}"
+#          rmq01_ip: "{{ rmq01_out.tagged_instances[0].private_ip }}"
+#          db01_ip: "{{ db01_out.tagged_instances[0].private_ip }}"
 
     - name: Insert/update Host IP & name in file provision-stack/group_vars/hostsip
       blockinfile:
