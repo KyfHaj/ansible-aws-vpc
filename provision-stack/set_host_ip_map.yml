@@ -1,7 +1,7 @@
 - name: Set host to IP map t /etc/hosts
   hosts: all
   tasks:
-    - name: Import VPC setuo Variables
+    - name: Import VPC setup Variables
       include_vars: group_vars/hostsip
 
     - name: hosts file
