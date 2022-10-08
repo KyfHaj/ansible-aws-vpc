@@ -238,7 +238,7 @@
     - name: Insert/update Host IP & name in file provision-stack/group_vars/hostsip
       blockinfile:
         path: provision-stack/group_vars/hostsip
-        block:
+        block:  |
           web01_ip: "{{ web01_out.tagged_instances[0].private_ip }}"
           app01_ip: "{{ app01_out.tagged_instances[0].private_ip }}"
           mc01_ip: "{{ mc01_out.tagged_instances[0].private_ip }}"
