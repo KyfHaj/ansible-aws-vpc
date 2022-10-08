@@ -2,7 +2,7 @@
   hosts: all
   tasks:
     - name: Import VPC setuo Variables
-      include_vars: group_vars/hostip
+      include_vars: group_vars/hostsip
 
     - name: hosts file
       blockinfile:
