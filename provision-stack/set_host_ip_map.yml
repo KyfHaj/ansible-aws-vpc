@@ -1,0 +1,15 @@
+- name: Set host to IP map t /etc/hosts
+  hosts: all
+  tasks:
+    - name: Import VPC setuo Variables
+      include_vars: group_vars/hostip
+
+    - name: hosts file
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{web01_ip}}  web01
+          {{app01_ip}}  app01
+          {{mc01_ip}} mc01
+          {{rmq01_ip}}  rmq01
+          {{db01_ip}} db01
