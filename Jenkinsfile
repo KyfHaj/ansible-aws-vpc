@@ -97,7 +97,7 @@ pipeline {
       disableHostKeyChecking: true,
             extraVars   : [
                 USER: "${NEXUS_USER}",
-                PASS: "${NEXUSPASS}",
+                PASS: "${NEXUS_PASS}",
           nexusip: "${NEXUSIP}",
           reponame: "${RELEASE_REPO}",
           groupid: "QA",
