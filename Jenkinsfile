@@ -32,10 +32,10 @@ pipeline {
           nexusip: "${NEXUSIP}",
           reponame: "${RELEASE_REPO}",
           groupid: "QA",
-          time: "${env.BUILD_TIMESTAMP}",
-          build: "${env.BUILD_ID}",
+          time: "${env.TIME}",
+          build: "${env.BUILD}",
                 artifactid: "vproapp",
-          vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
+          vprofile_version: "vproapp-${env.BUILD}-${env.TIME}.war"
             ]
          ])
         }
