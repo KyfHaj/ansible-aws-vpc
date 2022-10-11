@@ -16,6 +16,26 @@ pipeline {
     NEXUS_LOGIN = 'nexuslogin'
 
   }
+  stages {
+
+         stage('Setup parameters') {
+             steps {
+                 script {
+                     properties([
+                         parameters([
+                             string(
+                                 defaultValue: '',
+                                 name: 'BUILD', 
+                             ),
+ 							               string(
+                                 defaultValue: '',
+                                 name: 'TIME',
+                             )
+                         ])
+                     ])
+                 }
+             }
+ 		        }
 
     stage('Ansible Deploy to staging'){
         steps {
@@ -40,8 +60,7 @@ pipeline {
          ])
         }
     }
-
-  }
+}
   post {
         always {
             echo 'Slack Notifications.'
