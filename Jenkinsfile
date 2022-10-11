@@ -28,7 +28,7 @@ pipeline {
 
   }
 
-
+stages{
     stage('Deploy to Stage Bean'){
             steps {
               withAWS(credentials: 'awsbeancreds', region: 'ap-northeast-1') {
@@ -40,6 +40,7 @@ pipeline {
 
 
 
+  }
   post {
         always {
             echo 'Slack Notifications.'
